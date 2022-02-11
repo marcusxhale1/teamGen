@@ -80,13 +80,13 @@ const newEmployee = () => {
         }, 
         {
             type: 'confirm', 
-            name: 'confirmationEmployeeAdded', 
+            name: 'confirmEmployeeAdded', 
             message: "Would you like to add more employee's to the system?", 
             default: false
         }
     ])
     .then(employeeInfo => {
-        let { name, employeeID, employeeEmail, role, github, college, confirmAddEmployee } = employeeInfo; 
+        let { name, employeeID, employeeEmail, role, github, college, confirmEmployeeAdded } = employeeInfo; 
         let employee; 
 
         if (role === "Engineer") {
@@ -102,7 +102,7 @@ const newEmployee = () => {
 
         array.push(employee); 
 
-        if (confirmNewEmployee) {
+        if (confirmEmployeeAdded) {
             return newEmployee(array); 
         } else {
             return array;
@@ -130,5 +130,6 @@ newManager()
     return writeFile(pgHTML);
 })
 .catch(err => {
+    console.log(err);
     console.log("Error across the board. Try to find that bug if you can.")
 });
